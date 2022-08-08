@@ -1,62 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', '../common/forms.css']
+  selector: "login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css", "../common/forms.css"],
 })
 export class LoginComponent implements OnInit {
+  form: FormGroup;
 
-    form:FormGroup;
+  messagePerErrorCode = {
+    loginfailed: "Invalid credentials",
+  };
 
-    messagePerErrorCode = {
-        loginfailed: "Invalid credentials"
-    };
+  errors = [];
 
-    errors = [];
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.form = this.fb.group({
+      email: ["test@gmail.com", Validators.required],
+      password: ["Password10", Validators.required],
+    });
+  }
 
-    constructor(private fb:FormBuilder, private authService: AuthService, private router: Router) {
+  ngOnInit() {}
 
-        this.form = this.fb.group({
-            email: ['test@gmail.com',Validators.required],
-            password: ['Password10',Validators.required]
-        });
+  login() {
+    const val = this.form.value;
 
+    if (val.email && val.password) {
+      this.authService.login(val.email, val.password).subscribe(() => {
+        console.log("User is logged in");
+        this.router.navigateByUrl("/");
+      });
     }
-
-    ngOnInit() {
-
-    }
-
-    login() {
-
-        const val = this.form.value;
-
-        if (val.email && val.password) {
-
-            this.authService.login(val.email, val.password)
-                .subscribe(
-                    () => {
-                        console.log("User is logged in");
-                        this.router.navigateByUrl('/');
-                    }
-                );
-
-        }
-
-
-    }
-
+  }
 }
-
-
-
-
-
-
-
-
-
