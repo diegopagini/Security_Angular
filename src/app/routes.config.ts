@@ -1,8 +1,9 @@
-import { Routes } from "@angular/router";
-import { LessonsComponent } from "./lessons/lessons.component";
-import { LoginComponent } from "./login/login.component";
-import { SignupComponent } from "./signup/signup.component";
-import { AdminComponent } from "./admin/admin.component";
+import { Routes } from '@angular/router';
+
+import { AdminComponent } from './admin/admin.component';
+import { LessonsComponent } from './lessons/lessons.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const routesConfig: Routes = [
   {

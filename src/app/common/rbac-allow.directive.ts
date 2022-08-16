@@ -1,14 +1,9 @@
-import {
-  Directive,
-  Input,
-  OnDestroy,
-  TemplateRef,
-  ViewContainerRef,
-} from "@angular/core";
-import { AuthService } from "../services/auth.service";
-import { User } from "../model/user";
-import { Subscription } from "rxjs";
-import * as _ from "lodash";
+import { Directive, Input, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
+import * as _ from 'lodash';
+import { Subscription } from 'rxjs';
+
+import { User } from '../model/user';
+import { AuthService } from '../services/auth.service';
 
 @Directive({
   selector: "[rbacAllow]",
@@ -16,7 +11,6 @@ import * as _ from "lodash";
 export class RbacAllowDirective implements OnDestroy {
   allowedRoles: string[];
   user: User;
-
   sub: Subscription;
 
   constructor(

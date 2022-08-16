@@ -1,8 +1,9 @@
-import { shareReplay, filter, tap, map } from "rxjs/operators";
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, BehaviorSubject } from "rxjs";
-import { User } from "../model/user";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { filter, map, shareReplay, tap } from 'rxjs/operators';
+
+import { User } from '../model/user';
 
 export const ANONYMOUS_USER: User = {
   id: undefined,

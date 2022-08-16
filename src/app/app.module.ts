@@ -1,21 +1,19 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, Provider } from "@angular/core";
-import { HttpClientModule, HttpClientXsrfModule } from "@angular/common/http";
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { Router, RouterModule } from '@angular/router';
 
-import { AppComponent } from "./app.component";
-import { LessonsComponent } from "./lessons/lessons.component";
-import { LoginComponent } from "./login/login.component";
-import { SignupComponent } from "./signup/signup.component";
-import { routesConfig } from "./routes.config";
-import { LessonsService } from "./services/lessons.service";
-import { ReactiveFormsModule } from "@angular/forms";
-
-import { AuthService } from "./services/auth.service";
-import { AdminComponent } from "./admin/admin.component";
-import { Router, RouterModule } from "@angular/router";
-
-import { RbacAllowDirective } from "./common/rbac-allow.directive";
-import { AuthorizationGuard } from "./services/authorization.guard";
+import { AdminComponent } from './admin/admin.component';
+import { AppComponent } from './app.component';
+import { RbacAllowDirective } from './common/rbac-allow.directive';
+import { LessonsComponent } from './lessons/lessons.component';
+import { LoginComponent } from './login/login.component';
+import { routesConfig } from './routes.config';
+import { AuthService } from './services/auth.service';
+import { AuthorizationGuard } from './services/authorization.guard';
+import { LessonsService } from './services/lessons.service';
+import { SignupComponent } from './signup/signup.component';
 
 export function createAdminOnlyGuard(authService: AuthService, router: Router) {
   return new AuthorizationGuard(["ADMIN"], authService, router);

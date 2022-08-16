@@ -1,15 +1,10 @@
-import { tap, first, map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import * as _ from 'lodash';
+import { Observable } from 'rxjs';
+import { first, map, tap } from 'rxjs/operators';
 
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-} from "@angular/router";
-import { Observable } from "rxjs";
-import { AuthService } from "./auth.service";
-import * as _ from "lodash";
-import { Injectable } from "@angular/core";
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthorizationGuard implements CanActivate {
