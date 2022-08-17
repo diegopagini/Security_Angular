@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { db } from "./database";
 import * as argon2 from "argon2";
+import { Request, Response } from "express";
+
+import { db } from "./database";
 import { validatePassword } from "./password-validation";
-import moment = require("moment");
 import { createCsrfToken, createSessionToken } from "./security.utils";
 
 export function createUser(req: Request, res: Response) {
@@ -29,7 +29,7 @@ async function createUserAndSession(res: Response, credentials) {
 
   const csrfToken = await createCsrfToken();
 
-  res.cookie("SESSIONID", sessionToken, { httpOnly: true, secure: true });
+  res.cookie("SESSIONID", sessionToken, { httpOnly: true, secure: true }); // This is to block any try of inject js to steal the cookie
 
   res.cookie("XSRF-TOKEN", csrfToken);
 
